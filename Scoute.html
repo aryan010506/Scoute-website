@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoute Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #f9f9f9;
+      color: #000;
+    }
+
+    .container, .main-content {
+      display: none;
+    }
+
+    .container.active, .main-content.active {
+      display: block;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background: #00ccff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .form-container button:hover {
+      background: #0099cc;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 48px;
+      margin-top: 30px;
+      color: #000;
+      letter-spacing: 10px;
+    }
+
+    hr {
+      border: 1px solid #00ccff;
+      margin: 20px auto;
+      width: 80%;
+    }
+
+    table {
+      width: 100%;
+      background-color: #f0f0f0;
+      color: #000;
+    }
+
+    th a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    th {
+      padding: 15px;
+      font-size: 18px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #00ccff;
+      transition: background-color 0.3s ease;
+    }
+
+    th:hover {
+      background-color: #ddd;
+      color: #00ccff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 32px;
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .column {
+      flex: 1 1 300px;
+      max-width: 300px;
+      background: #f8f8f8;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .column:hover {
+      transform: scale(1.05);
+    }
+
+    .column img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-bottom: 2px solid #00ccff;
+    }
+
+    .product-details {
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .btn {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 28px;
+      background: #00ccff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0099cc;
+      transform: scale(1.05);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .form-container {
+        padding: 20px;
+      }
+
+      .row {
+        gap: 10px;
+      }
+
+      .column {
+        flex: 1 1 100%;
+        max-width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+
+      .product-details {
+        font-size: 18px;
+        padding: 5px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .form-container {
+        padding: 15px;
+      }
+
+      .product-details {
+        font-size: 16px;
+        padding: 5px;
+      }
+
+      .btn {
+        padding: 8px 15px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login/Registration -->
+  <div class="container active" id="loginContainer">
+    <div class="form-container">
+      <h2>Welcome to Scoute</h2>
+      <input type="text" id="fname" placeholder="First Name" required>
+      <input type="text" id="lname" placeholder="Last Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+      <button onclick="registerUser()">Continue</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <h1><b>S C O U T E</b></h1>
+    <hr>
+    <table>
+      <tr>
+        <th><a href="home.html">Home</a></th>
+        <th><a href="bestseller.html">Best Seller</a></th>
+        <th><a href="tshirt.html">T-Shirt</a></th>
+        <th><a href="preorder.html">PreOrder</a></th>
+      </tr>
+    </table>
+
+    <h2>Latest Release</h2>
+
+    <!-- First Row -->
+    <div class="row">
+      <div class="column">
+        <img src="C:/Users/Aryan/Downloads/WhatsApp Image 2025-04-26 at 4.48.43 PM.jpeg" alt="Eminem Acid Wash Shirt">
+      </div>
+      <div class="column">
+        <img src="C:/Users/Aryan/Downloads/WhatsApp Image 2025-04-26 at 4.48.44 PM.jpeg" alt="Product 2">
+      </div>
+    </div>
+
+    <!-- Price and Product Description for the first pair of shirts -->
+    <div class="product-details">
+      <p><b>Eminem Acid Wash Shirt - 900 ₹</b></p>
+    </div>
+
+    <!-- Second Row -->
+    <div class="row">
+      <div class="column">
+        <img src="C:/Users/Aryan/Downloads/WhatsApp Image 2025-04-26 at 4.48.44 PM (1).jpeg" alt="Travis Scott Acid Wash Shirt">
+      </div>
+      <div class="column">
+        <img src="C:/Users/Aryan/Downloads/WhatsApp Image 2025-04-26 at 4.48.44 PM (2).jpeg" alt="Product 4">
+      </div>
+    </div>
+
+    <!-- Price and Product Description for the second pair of shirts -->
+    <div class="product-details">
+      <p><b>Travis Scott Acid Wash Shirt - 900 ₹</b></p>
+    </div>
+
+    <button class="btn" onclick="showAlert()">Click Me for Surprise</button>
+  </div>
+
+  <script>
+    function registerUser() {
+      const fname = document.getElementById("fname").value.trim();
+      const lname = document.getElementById("lname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.getElementById("gender").value;
+
+      if (fname && lname && email && phone && gender) {
+        localStorage.setItem("scouteUser", JSON.stringify({ fname, lname, email, phone, gender }));
+        document.getElementById("loginContainer").classList.remove("active");
+        document.getElementById("mainContent").classList.add("active");
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
+
+    function showAlert() {
+      const user = JSON.parse(localStorage.getItem("scouteUser"));
+      alert(`Hi ${user.fname}! Thank you for visiting Scoute! Stay tuned for more updates.`);
+    }
+  </script>
+
+</body>
+</html>
